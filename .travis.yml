@@ -5,6 +5,8 @@ cache:
   directories:
     - node_modules
 
+- travis encrypt 'REPO_TOKEN=f86d4b90354c00d746dc538714b3d8bca69ee06e' --add
+
 before_install:
 - npm install -g hexo-cli
 
@@ -21,6 +23,8 @@ install:
 
 # 部署的命令
 script:
+- git submodule init      # 用于更新主题
+- git submodule update
 - hexo clean
 - hexo generate
 
