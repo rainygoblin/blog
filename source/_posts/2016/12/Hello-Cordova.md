@@ -1,7 +1,7 @@
 ---
 title: Hello Cordova
 date: 2016-12-15 18:51:31
-tags: Cordova
+tags: [Cordova]
 ---
 
 ## Mobile apps with HTML, CSS & JS
