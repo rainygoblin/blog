@@ -20,32 +20,6 @@ before_deploy ，可选
 deploy ，可选
 after_deploy ，可选
 after_script
-所以我们的配置如下：
-
-.travis.yml
-language: node_js
-
-node_js:
-- '0.12'
-
-branches:
-  only:
-  - source                # 只监测 source 分支上的 commit
-
-before_install:
-- npm install -g hexo-cli # 安装 hexo
-
-install:
-- npm install             # 安装额外的插件
-
-script:
-- git submodule init      # 用于更新主题
-- git submodule update
-- hexo generate
-上面的例子中 npm install 安装 hexo 需要的插件，这要求 package.json 已经设置好。例如，我们要使用 hexo-deployer-git 插件来部署，所以我们需要事先运行下面命令：
-
-npm install --save hexo-deployer-git
-上述命令的作用之一是在 package.json 中添加相应的项。
 
 使用 Travis 自动部署
 
@@ -55,7 +29,7 @@ _config.yml
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/lotabout/lotabout.github.io
+  repo: https://github.com/rainygoblin/rainygoblin.github.io.git
   branch: master
 然后我们可以在 .travis.yml 添加生成成功后的动作：
 
@@ -64,7 +38,6 @@ after_success:
 - git config --global user.name "Your Name"
 - git config --global user.email "Your Email"
 - hexo deploy
-然而在 hexo deploy 时，我们需要输入 Github 的用户名和密码，但这又要如何自动化呢？
 
 ### 1. Github OAuth
 
@@ -98,7 +71,7 @@ travis encrypt 'GH_TOKEN=<TOKEN>' --add
 env:
   global:
     secure: QAH+/EIDC/Jg...
-上面的一长串字符串就是加密后的环境变量。之后，在 Travis 执行脚本时，我们就可能访问环境变量 GH_TOKEN 来获取 github token 了。
+上面的一长串字符串就是加密后的环境变量。之后，在 Travis 执行脚本时，我们就可能访问环境变量 GITHUB_API_KEY 来获取 github token 了。
 
 最后，我们用 sed 命令动态地修改 github 的 URL，加入 token 信息：
 
@@ -106,5 +79,5 @@ env:
 after_success:
 - git config --global user.name "Mark Wallace"
 - git config --global user.email "lotabout@gmail.com"
-- sed -i'' "/^ *repo/s~github\.com~${GH_TOKEN}@github.com~" _config.yml
+- sed -i'' "/^ *repo/s~github\.com~${GITHUB_API_KEY}@github.com~" _config.yml
 - hexo deploy

@@ -21,6 +21,8 @@ before_script:
 # 安装依赖
 install:
 - npm install
+# (Optional) To enable Insight Search as your default search engine, you should also install hexo-generator-json-content from npm.
+- npm install -S hexo-generator-json-content
 
 # 部署的命令
 script:
