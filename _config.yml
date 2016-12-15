@@ -69,5 +69,5 @@ theme: landscape
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: https://${GITHUB_API_KEY}@github.com/rainygoblin/rainygoblin.github.io.git
+  repository: https://github.com/rainygoblin/rainygoblin.github.io.git
   branch: master
