@@ -1,6 +1,6 @@
 ---
-title: Hello Atom
-date: 2016-12-21 09:51:31
+title: Hello Idea
+date: 2016-12-21 10:10:31
 tags: [Idea, 快捷键]
 ---
 [http://www.cnblogs.com/wxd0108/p/5295017.html](http://www.cnblogs.com/wxd0108/p/5295017.html)
